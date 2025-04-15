@@ -1,4 +1,4 @@
-import { IsOptional, IsString } from "class-validator";
+import { IsArray, IsOptional, IsString } from "class-validator";
 
 export class UpdateProjectDto {
     @IsOptional()
@@ -14,11 +14,11 @@ export class UpdateProjectDto {
     gitHubLink?: string; 
     
     @IsOptional()  
-    @IsString()
+    @IsArray()
     techs?: Array<string>;  
     
     @IsOptional()  
-    @IsString()
+    @IsArray()
     images?: Array<string>;
     
 }   
