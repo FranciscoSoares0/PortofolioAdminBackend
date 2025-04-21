@@ -10,6 +10,9 @@ export class CreateProjectDto {
 
     @IsString()
     gitHubLink: string; 
+    
+    @IsString()
+    appLink: string; 
       
     @IsArray()
     techs: Array<string>; 

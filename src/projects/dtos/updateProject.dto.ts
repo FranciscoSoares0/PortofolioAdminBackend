@@ -13,6 +13,10 @@ export class UpdateProjectDto {
     @IsString()
     gitHubLink?: string; 
     
+    @IsOptional()
+    @IsString()
+    appLink?: string; 
+    
     @IsOptional()  
     @IsArray()
     techs?: Array<string>;  

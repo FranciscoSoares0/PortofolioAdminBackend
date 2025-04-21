@@ -7,6 +7,7 @@ import { LoginDto } from './dtos/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { RefreshToken } from './schemas/refresh-token.schema';
 import { v4 as uuidv4 } from 'uuid';
+import { RefreshTokenDto } from './dtos/refresh-token.dto';
 
 @Injectable()
 export class AuthService {
@@ -73,7 +74,7 @@ export class AuthService {
         //Calculate the expiry date for the refresh token
         const expiresAt = new Date();
         expiresAt.setDate(expiresAt.getDate() + 7); // Set expiry date to 7 days from now
-        await this.refreshTokenModel.updateOne({userId}, {$set: {expiresAt}},{
+        await this.refreshTokenModel.updateOne({userId}, {$set: {token, expiresAt}},{
             upsert: true, // Create a new document if it doesn't exist
         })
     }

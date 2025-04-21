@@ -13,6 +13,9 @@ export class Project extends Document {
   @Prop({ required: true })
   gitHubLink: string; // Link to the project's GitHub repository
   
+  @Prop()
+  appLink: string; 
+  
   @Prop({ required: false })
   techs: Array<string>; // Technologies used in the project
 

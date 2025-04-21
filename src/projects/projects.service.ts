@@ -12,13 +12,14 @@ export class ProjectsService {
   ) {}
 
   async createProject(createProjectDto: CreateProjectDto) {
-    const { name, description, gitHubLink, techs, images } = createProjectDto;
+    const { name, description, gitHubLink, appLink, techs, images } = createProjectDto;
 
     // Create a new project instance
     const newProject = new this.projectModel({
       name,
       description,
       gitHubLink,
+      appLink,
       techs,
       images,
     });
@@ -48,7 +49,7 @@ export class ProjectsService {
 
   async updateProject(projectId:string,updateProjectDto:UpdateProjectDto) {
     // Destructure the updateProjectDto to get the project ID and other fields
-    const { name, description, gitHubLink, techs, images } = updateProjectDto;
+    const { name, description, gitHubLink, appLink, techs, images } = updateProjectDto;
 
     const project = await this.projectModel.findById(projectId);
 
@@ -63,6 +64,9 @@ export class ProjectsService {
     }
     if (gitHubLink !== undefined) {
       project.gitHubLink = gitHubLink;
+    }
+    if (appLink !== undefined) {
+      project.appLink = appLink;
     }
     if (techs !== undefined) {
       project.techs = techs;

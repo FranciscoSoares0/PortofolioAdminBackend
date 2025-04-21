@@ -19,7 +19,7 @@ import { ProjectsModule } from './projects/projects.module';
       global: true,
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: '1h' },
+        signOptions: { expiresIn: '5s' },
       }),
     }),
     MongooseModule.forRootAsync({
