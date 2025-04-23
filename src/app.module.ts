@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { ProjectsModule } from './projects/projects.module';
+import { ExperiencesModule } from './experiences/experiences/experiences.module';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { ProjectsModule } from './projects/projects.module';
       global: true,
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: '5s' },
+        signOptions: { expiresIn: '1d' },
       }),
     }),
     MongooseModule.forRootAsync({
@@ -31,6 +32,7 @@ import { ProjectsModule } from './projects/projects.module';
     }),
     AuthModule,
     ProjectsModule,
+    ExperiencesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
