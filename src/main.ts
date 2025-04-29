@@ -7,10 +7,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
   const frontendUrl = configService.get<string>('FRONTEND_URL');
+  const adminFrontendUrl = configService.get<string>('ADMIN_FRONTEND_URL');
 
   // Enable CORS
   app.enableCors({
-    origin: [frontendUrl,"http://localhost:4200"], // allow Angular
+    origin: [frontendUrl,adminFrontendUrl,"http://localhost:4200"], // allow Angular
     credentials: true, // if you're sending cookies or Authorization headers
   });
   app.useGlobalPipes(
