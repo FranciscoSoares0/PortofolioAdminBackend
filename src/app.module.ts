@@ -27,14 +27,6 @@ import { ExperiencesModule } from './experiences/experiences/experiences.module'
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         uri: configService.get<string>('DATABASE_URL'),
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        autoIndex: false, // Optional: Turn off autoIndex in production
-        poolSize: 10, // Keep 10 connections in the pool
-        serverSelectionTimeoutMS: 5000, // Fail fast on DB connection
-        socketTimeoutMS: 45000, // Adjust socket timeout
-        reconnectTries: Number.MAX_VALUE, // Retry indefinitely if MongoDB is temporarily unreachable
-        reconnectInterval: 5000, // Retry every 5 seconds
       }),
       inject: [ConfigService],
     }),
